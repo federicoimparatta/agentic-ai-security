@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Skill packaging artifacts
+*.skill
+
+# Python (if any scripts are added later)
+__pycache__/
+*.py[cod]
+.venv/
