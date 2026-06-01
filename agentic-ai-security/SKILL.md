@@ -15,7 +15,11 @@ description: >
   Privilege, Design/Config, Behaviour, Structural, Accountability — to any LLM
   agent code being generated, even when a security review has not been
   explicitly requested. Use this skill for any task that produces or modifies
-  agent code, agent configuration, or agent system prompts.
+  agent code, agent configuration, or agent system prompts. Also activates for
+  questions about UL certification of AI-based products (UL 3115), cybersecurity
+  of network-connectable products (UL 2900), autonomous product safety (UL 4600),
+  or when an agent controls UL-certified hardware such as inverters or energy
+  storage systems.
 ---
 
 # Agentic AI Security
@@ -201,7 +205,27 @@ async def execute_privileged_action(agent_id, action, context):
 
 ---
 
+## Certification alignment — UL 3115 / UL 2900 / UL 4600
+
+If the agent you are building controls, optimizes, or is embedded in a product
+that carries (or is pursuing) a UL Mark — inverters, energy storage, industrial
+controls, autonomous systems — the controls above double as certification
+evidence. Apply these without waiting for an assessment:
+
+| When | Apply |
+|---|---|
+| AI-based product seeking UL 3115 | Lifecycle evidence for all four phases (not just code). This skill covers 6 of UL 3115's 9 dimensions; track **fairness, bias, privacy** as a separate workstream. |
+| Network-connectable product (UL 2900) | Per-request access control, secure architecture, structured tamper-evident logs, pen/adversarial testing — already defaults here. |
+| Fully autonomous operation (UL 4600) | Hard constraints + documented graduated-autonomy exit criteria form the safety case. |
+| **Agent commands certified hardware** | Model the certified operating envelope (voltage, SoC, thermal, ramp-rate, anti-islanding) as a **deterministic clamp below the LLM** — never let the agent be the only thing between a command and a UL-certified actuator. |
+
+This is *alignment*, not a compliance claim — certification is granted only by
+UL Solutions after testing. Full mapping in `references/ul-certification-mapping.md`.
+
+---
+
 ## Reference files
 
 - `references/risk-taxonomy.md` — Full five-category risk breakdown with scenario examples from the source guidance
 - `references/best-practices-checklist.md` — Complete per-phase checklists for Design, Develop, Deploy, and Operate
+- `references/ul-certification-mapping.md` — How these controls map to UL 3115 (AI safety), UL 2900 (cybersecurity), UL 4600 (autonomy), and to commanding UL-certified energy/industrial hardware

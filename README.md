@@ -1,7 +1,5 @@
 # agentic-ai-security
 
-[🇪🇸 Leer en español](README.es.md)
-
 A Claude skill that applies the **ASD/CISA/NSA/NCSC agentic AI security framework** inline during agent development — catching privilege, behaviour, and structural risks at the moment code is written, not after.
 
 > Based on the joint guidance *"Careful adoption of agentic AI services"* (2026), co-authored by the Australian Signals Directorate, CISA, NSA, NCSC-UK, NCSC-NZ, and the Canadian Centre for Cyber Security.
@@ -66,7 +64,8 @@ your-project/
             ├── SKILL.md
             └── references/
                 ├── risk-taxonomy.md
-                └── best-practices-checklist.md
+                ├── best-practices-checklist.md
+                └── ul-certification-mapping.md
 ```
 
 2. Claude Code will discover and load it automatically on next session.
@@ -80,7 +79,8 @@ agentic-ai-security/
 ├── SKILL.md                              # Main skill — loaded when triggered
 └── references/
     ├── risk-taxonomy.md                  # Five risk categories with scenario examples
-    └── best-practices-checklist.md       # Full per-phase checklists (Design/Develop/Deploy/Operate)
+    ├── best-practices-checklist.md       # Full per-phase checklists (Design/Develop/Deploy/Operate)
+    └── ul-certification-mapping.md        # Maps controls to UL 3115 / 2900 / 4600 certification
 ```
 
 The skill uses **progressive disclosure**: only `SKILL.md` is loaded into context when triggered. The reference files are read on demand when deeper detail is needed, keeping context window usage minimal.
@@ -114,6 +114,31 @@ Co-authored by: ASD's ACSC (Australia) · CISA (USA) · NSA (USA) · NCSC-UK · 
 The framework organises agentic AI security risks into five categories (Privilege, Design/Config, Behaviour, Structural, Accountability) and provides best practices across the full system lifecycle.
 
 Full document: [cyber.gov.au](https://www.cyber.gov.au)
+
+---
+
+## Certification alignment (UL)
+
+For teams building AI into regulated hardware, the controls in this skill double
+as conformity-assessment evidence. `references/ul-certification-mapping.md` maps
+them to:
+
+- **UL 3115** — *Safety of AI-Based Products* (2025). The skill's four phases align
+  with UL 3115's lifecycle and cover six of its nine assessment dimensions
+  (security, accountability, robustness, plus partial reliability, safety,
+  transparency). Fairness, bias, and full privacy remain a separate workstream.
+- **UL 2900** — *Software Cybersecurity for Network-Connectable Products*. Per-request
+  access control, secure architecture, tamper-evident logging, and pen/adversarial
+  testing are skill defaults.
+- **UL 4600** — *Autonomous Product Safety*. Hard constraints and graduated-autonomy
+  exit criteria form the safety case.
+- **Commanding certified hardware** (UL 1741 inverters, UL 9540 / 9540A energy
+  storage, UL 1973 batteries): model the certified operating envelope as a
+  deterministic clamp *below* the LLM — never let the agent be the only thing
+  between a command and a UL-certified actuator.
+
+This is *alignment*, not a compliance claim. UL certification is granted only by
+UL Solutions after testing.
 
 ---
 
